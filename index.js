@@ -57,5 +57,7 @@ exports.handler = function(event, context, lambdaCallback) {
       reply = "hoalt dei fotzn du saupreiß";
     }
 
-    telegramBot.sendMessage(chatId, reply);
+    //Only send a message when one of the cases is fullfiled
+    if(reply)
+      telegramBot.sendMessage(chatId, reply);
 }
