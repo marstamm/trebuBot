@@ -57,6 +57,22 @@ exports.handler = function(event, context, lambdaCallback) {
       reply = "hoalt dei fotzn du saupreiß";
     }
 
+    if( message.toLowerCase().includes("catapult")
+      ||message.toLowerCase().includes("katapult"))
+    {
+      reply = "Shut up, pleb. The trebuchet is the superior siege engine!";
+    }
+
+    if(message.localeCompare("/trebuchet") == 0)
+    {
+      var memes = ["https://i.redd.it/brbxtnxhf81z.jpg", "https://i.redd.it/cvnnq858rquy.png", "https://i.redd.it/mucoiw11onkz.jpg", "https://i.imgur.com/S0prvkw.jpg", "https://i.redd.it/yrm4jflir1oz.jpg", "https://i.redd.it/dp3bdzsnt4oz.jpg", "https://i.imgur.com/5n0GRwW.jpg", "https://i.redd.it/ctd1nxq1vvpy.jpg", "http://i.imgur.com/OLJ3aaG.gifv"];
+      reply = memes[Math.floor(Math.random()*memes.length)];
+    }
+
+    if(message.localeCompare("/beemovie") == 0)
+    {
+      reply = "According to all known laws of aviation, there is no way a bee should be able to fly. Its wings are too small to get its fat little body off the ground. The bee, of course, flies anyway because bees don't care what humans think is impossible. Yellow, black. Yellow, black. Yellow, black. Yellow, black. Ooh, black and yellow! Let's shake it up a little. Barry! Breakfast is ready! Ooming! Hang on a second. Hello? - Barry? - Adam? - Oan you believe this is happening? - I can't. I'll pick you up. Looking sharp. Use the stairs. Your father paid good money for those.";
+    }
     //Only send a message when one of the cases is fullfiled
     if(reply)
       telegramBot.sendMessage(chatId, reply);
