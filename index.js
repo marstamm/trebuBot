@@ -37,16 +37,22 @@ exports.handler = function(event, context, lambdaCallback) {
     {
       var xd = ['x', 'd', 'X', 'D'];
       //Topkek bot already handles these
-      if(!message.includes("xD"))
+      if(!message.includes("xD") && !event.body.message.from.is_bot)
       {
         reply = "x";
-        for(var i = 0; i < Math.random()*10; i++)
+        for(var i = 0; i < Math.random()*8; i++)
         {
-          reply += xd[Math.random()*3];
+          reply += xd[Math.round(Math.random()*3)];
         }
         reply += "D";
-
-        telegramBot.sendMessage(chatId, reply);
       }
     }
+
+    if(message.toLowerCase().includes("shut up"))
+    {
+      //thank yaber for this gem
+      reply = "hoalt dei fotzn du saupreiß";
+    }
+
+    telegramBot.sendMessage(chatId, reply);
 }
