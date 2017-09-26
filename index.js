@@ -37,7 +37,11 @@ exports.handler = function(event, context, lambdaCallback) {
     {
       var xd = ['x', 'd', 'X', 'D'];
       //Topkek bot already handles these
-      if(!message.includes("xD") && !event.body.message.from.is_bot)
+      if(
+        !message.includes("xD")
+        && !event.body.message.from.is_bot //we don't want the bots to battle
+        &&  !event.body.message.from.Username != "Granor"  //exclude Granor, he's nice
+      )
       {
         reply = "x";
         for(var i = 0; i < Math.random()*8; i++)
