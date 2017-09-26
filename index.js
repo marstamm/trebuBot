@@ -36,11 +36,10 @@ exports.handler = function(event, context, lambdaCallback) {
     if(message.toLowerCase().includes("xd"))
     {
       var xd = ['x', 'd', 'X', 'D'];
-      //Topkek bot already handles these
       if(
-        !message.includes("xD")
+           !message.includes("xD") //Topkek bot already handles these
         && !event.body.message.from.is_bot //we don't want the bots to battle
-        &&  !event.body.message.from.Username != "Granor"  //exclude Granor, he's nice
+        && event.body.message.from.username.localeCompare("Granor") != 0  //exclude Granor, he's nice
       )
       {
         reply = "x";
