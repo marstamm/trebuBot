@@ -22,18 +22,29 @@ exports.handler = function(event, context, lambdaCallback) {
     } else if (event.body.channel_post && event.body.channel_post.chat && event.body.channel_post.chat.id) {
       chatId = event.body.channel_post.chat.id;
     }
+    else if () {
+      return;
+    }
 
     //parse message
     let message;
+    let lowerCaseMessage;
+    let reply;
+
     if (event.body.channel_post && event.body.channel_post.text) {
       message = event.body.channel_post.text;
+      lowerCaseMessage = message.toLowerCase();
     } else if (event.body.message && event.body.message.text) {
       message = event.body.message.text;
+      lowerCaseMessage = message.toLowerCase();
     }
 
+    if((Math.random() < 0.001))
+    {
+      reply = "Bundesgrenzschutz, alles auf den Boden!";
+    }
 
-    let reply;
-    if(message.toLowerCase().includes("xd"))
+    if(lowerCaseMessage.includes("xd"))
     {
       var xd = ['x', 'd', 'X', 'D'];
       if(
@@ -48,20 +59,19 @@ exports.handler = function(event, context, lambdaCallback) {
           reply += xd[Math.round(Math.random()*3)];
         }
         reply += "D";
+        telegramBot.sendMessage(chatId, reply);
+        return;
       }
     }
 
-    if(message.toLowerCase().includes("shut up"))
+    if(lowerCaseMessage.includes("shut up"))
     {
       //thank yaber for this gem
       reply = "hoalt dei fotzn du saupreiß";
     }
 
-    if( message.toLowerCase().includes("catapult")
-      ||message.toLowerCase().includes("katapult"))
-    {
+    if( lowerCaseMessage.includes("catapult") || lowerCaseMessage.includes("katapult"))
       reply = "Shut up, pleb. The trebuchet is the superior siege engine!";
-    }
 
     if(message.localeCompare("/trebuchet") == 0)
     {
@@ -73,7 +83,11 @@ exports.handler = function(event, context, lambdaCallback) {
     {
       reply = "According to all known laws of aviation, there is no way a bee should be able to fly. Its wings are too small to get its fat little body off the ground. The bee, of course, flies anyway because bees don't care what humans think is impossible. Yellow, black. Yellow, black. Yellow, black. Yellow, black. Ooh, black and yellow! Let's shake it up a little. Barry! Breakfast is ready! Ooming! Hang on a second. Hello? - Barry? - Adam? - Oan you believe this is happening? - I can't. I'll pick you up. Looking sharp. Use the stairs. Your father paid good money for those.";
     }
-    //Only send a message when one of the cases is fullfiled
+
+
     if(reply)
+    {
       telegramBot.sendMessage(chatId, reply);
+    }
+
 }
