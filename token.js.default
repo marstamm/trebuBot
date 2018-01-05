@@ -1,0 +1,6 @@
+'use strict';
+
+/**
+ * Token
+ */
+module.exports = 'your_token_here';
